@@ -31,6 +31,12 @@ const App = () => {
 
   const addBlog = (event) => {
     event.preventDefault()
+    const blogToPost = {
+      title: newTitle,
+      author: newAuthor,
+      url: newUrl
+    }
+    blogService.create(blogToPost)
     setNewTitle('')
     setNewAuthor('')
     setNewUrl('')
@@ -133,6 +139,7 @@ const App = () => {
       {!user && loginForm()} 
       {user && <div>
         <p>{user.name} logged in <button onClick={handleLogout} type='submit'>logout</button></p>
+          <h2>create new</h2>
           {blogForm()}
           {blogs.map(blog =>
             <Blog key={blog.id} blog={blog} />
